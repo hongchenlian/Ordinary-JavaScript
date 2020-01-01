@@ -133,9 +133,11 @@
 	    }
 	    var test2 = setInterval(nex,3000);
 		let _this = this;
+		//鼠标移入图片清除定时器
 		view.onmouseover = function(){
 			clearInterval(test2);
 		}
+		//鼠标移出图片启动定时器
 		view.onmouseout = function(){
 			_this.test2 = setInterval(nex,3000);
 		}
