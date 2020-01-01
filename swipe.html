@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>轮播图</title>
+	</head>
+	<style>
+	        *{
+	            padding:0;
+	            margin: 0;
+	        }
+	        div{
+	            position: relative;
+	            width: 800px;
+	            height: 400px;
+	            margin: 100px auto 0 auto;
+	        }
+	        #view{
+	            width: 800px;
+	            height: 400px;
+	            margin: 0 auto;
+	        }
+	        img{
+	            width: 800px;
+				height: 400px;
+	            display: none;
+	        }
+	        #dote{
+	            position: absolute;
+	            bottom:40px;
+	            left:350px;
+	            
+	        }
+	        #dote li{
+	            list-style: none;
+	            margin: 0 5px;
+	
+	            width: 15px;
+	            height: 15px;
+	            border-radius: 50%;
+	            background-color: #dedede;
+	            float: left;
+	        }
+	        #left{
+	            position: absolute;
+	            background-color: #333333;
+	            color: white;
+	            font-size: 60px;
+	            top:180px;
+	            left:10px;
+	            padding: 10px 10px;
+	            opacity: 0.5;
+	            border: none;
+	
+	        }
+	        #right{
+	            position: absolute;
+	            background-color: #333333;
+	            color: white;
+	            font-size: 60px;
+	            top:180px;
+	            right:10px;
+	            padding: 10px 10px;
+	            opacity: 0.5;
+	            border: none;
+	        }
+	        #right:hover{
+	            background-color: #999999;
+	        }
+	        #left:hover{
+	            background-color: #999999;
+	        }
+	    
+	    </style>
+	</head>
+	<body>
+	   <div>
+	        <main id="view">
+				<img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1577874693381&di=5442a078949e27e0b80f84e877f4532a&imgtype=0&src=http%3A%2F%2Fpic1.win4000.com%2Fwallpaper%2F4%2F53c88cedf40ac.jpg" alt="#">
+				<img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1577874693380&di=431d6d7ae893f25a38313c70b6b586e6&imgtype=0&src=http%3A%2F%2F00.minipic.eastday.com%2F20170731%2F20170731005454_1cff2e408fa046e3d25bc70181b6ce10_1.jpeg" alt="#">
+				<img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1577874693379&di=ad5b1ffc11e373a3a79f79268763fe59&imgtype=0&src=http%3A%2F%2Fhbimg.b0.upaiyun.com%2Fff1d922893b71db523f2876b5af721264d3e0c8e1a540-y9jsOJ_fw658" alt="#">
+				<img src="https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=4076986786,906618402&fm=26&gp=0.jpg" alt="#">
+				<img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1577874693378&di=0332c5aff5740e840879a7d2b00f4661&imgtype=0&src=http%3A%2F%2Fpic1.win4000.com%2Fwallpaper%2Fe%2F553e075f2998e.jpg" alt="#">
+				<img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1577874693377&di=6900ad4514e58f069725468125fb7c49&imgtype=0&src=http%3A%2F%2Fpic1.win4000.com%2Fwallpaper%2F8%2F58f6c5821735f.jpg" alt="#">
+			</main>
+			<ul id="dote">
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+			</ul>
+			<button id="left" onclick="prev()">&lt;</button>
+			<button id="right" onclick="nex()">&gt;</button>
+	   </div>
+	</body>
+	<script>
+	    var view = document.getElementById('view');
+	    var dote = document.getElementById('dote');    
+	    var x = 0;    
+	    view.children[x].style.display='block';
+	    dote.children[x].style.backgroundColor='blue';
+	
+	   function prev(){
+	       view.children[x].style.display='none';
+	       dote.children[x].style.backgroundColor='#dedede';       
+	       x==0?x=dote.children.length :null;
+	       x--;
+	       view.children[x].style.display='block'
+	       dote.children[x].style.backgroundColor='blue';
+	    }
+	    function nex(){
+	       view.children[x].style.display='none';
+	       dote.children[x].style.backgroundColor='#dedede';    
+	       x==dote.children.length-1?x=-1:null;                                 
+	       x++;
+	       view.children[x].style.display='block';
+	       dote.children[x].style.backgroundColor='blue';
+	    }
+	
+	    //tab 切换
+	
+	    for(var j=0;j<dote.children.length;j++){
+	        dote.children[j].index=j                //为每个圆点添加索引值，以便获取调用
+	        dote.children[j].onclick=function (){
+	            view.children[x].style.display='none';
+	            dote.children[x].style.backgroundColor='#dedede';         
+	            x=this.index;                       //当前圆点索引值付给x
+	            view.children[x].style.display='block';       
+	            this.style.backgroundColor='blue'; 
+	        }
+	    }
+	    var test2 = setInterval(nex,3000);
+		let _this = this;
+		view.onmouseover = function(){
+			clearInterval(test2);
+		}
+		view.onmouseout = function(){
+			_this.test2 = setInterval(nex,3000);
+		}
+	</script>
+</html>
