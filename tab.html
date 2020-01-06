@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>tab点击切换</title>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+				list-style: none;
+			}
+			ul{
+				display: flex;
+				justify-content: space-around;
+				text-align: center;
+				font-size: 20px;
+				height: 60px;
+				line-height: 60px;
+			}
+			li{
+				flex: 1;
+			}
+			.active{
+				border-bottom: 2px solid #FF0000;
+			}
+			.conter{
+				display: none;
+			}
+			.conter.show{
+				display: inline;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box">
+			<ul>
+				<li class="active">目录1</li>
+				<li>目录2</li>
+				<li>目录3</li>
+				<li>目录4</li>
+			</ul>
+			<div class="conter show">内容1</div>
+			<div class="conter">内容2</div>
+			<div class="conter">内容3</div>
+			<div class="conter">内容4</div>
+		</div>
+		<script type="text/javascript">
+			window.onload = function(){
+				//获取元素
+				var oli = document.getElementsByTagName("li");
+				var odiv = document.getElementsByClassName("conter");
+				for(var i = 0;i < oli.length;i ++){
+					//保存i
+					oli[i].index = i;
+					//对应标题点击事件
+					oli[i].onclick = function(){
+						//移除class
+						for(var j = 0;j < oli.length;j ++){
+							oli[j].classList.remove("active");
+							odiv[j].classList.remove("show");
+						}
+						//点击选中添加class，改变对应样式
+						oli[this.index].classList.add("active");
+						odiv[this.index].classList.add("show");
+					}
+				}
+			}
+		</script>
+	</body>
+</html>
